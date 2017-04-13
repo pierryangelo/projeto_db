@@ -99,7 +99,14 @@ CREATE TABLE PRODUTO (
     TAXA_PRODUTO DECIMAL(3,2)
 );
 
-
+INSERT INTO PRODUTO VALUES(DEFAULT, 1, 'Intel Core i3-6100 Skylake', 'Processador Dual-core/4 threads', 499.90, 10, 0.0);
+INSERT INTO PRODUTO VALUES(DEFAULT, 1, 'Intel Core i3-7100 Kaby Lake', 'Processador Dual-core/4 threads', 469.90, 10, 0.0);
+INSERT INTO PRODUTO VALUES(DEFAULT, 2, 'Intel Core i5-7400 Kaby Lake', 'Processador Quad-core/4 threads', 739.90, 10, 0.0);
+INSERT INTO PRODUTO VALUES(DEFAULT, 2, 'Intel Core i5-7600K Kaby Lake', 'Processador Quad-core/4 threads', 939.90, 10, 0.0);
+INSERT INTO PRODUTO VALUES(DEFAULT, 3, 'Intel Core i7-6700K Skylake', 'Processador Quad-core/8 threads', 1339.90, 10, 0.0);
+INSERT INTO PRODUTO VALUES(DEFAULT, 3, 'Intel Core i7-7700K Kaby Lake', 'Processador Quad-core/8 threads', 1499.90, 10, 0.0);
+INSERT INTO PRODUTO VALUES(DEFAULT, 4, 'Intel Pentium G3260 Haswell', 'Processador Dual-core/2 threads', 249.90, 10, 0.0);
+INSERT INTO PRODUTO VALUES(DEFAULT, 4, 'Intel Pentium G4500 Skylake', 'Processador Dual-core/4 threads', 329.90, 10, 0.0);
 INSERT INTO PRODUTO VALUES(DEFAULT, 5, 'Ryzen 3 1100', 'Processador Quad-core/4 threads', 400, 10, 0.0);
 INSERT INTO PRODUTO VALUES(DEFAULT, 5, 'Ryzen 3 1200X', 'Processador Quad-core/4 threads', 470, 10, 0.0);
 INSERT INTO PRODUTO VALUES(DEFAULT, 6, 'Ryzen 5 1400', 'Processador Quad-core/8 threads', 699.99, 10, 0.0);
@@ -117,9 +124,16 @@ INSERT INTO PRODUTO VALUES(DEFAULT, 8, 'Radeon RX 480 - 8GB', 'Placa de vídeo c
 INSERT INTO PRODUTO VALUES(DEFAULT, 9, 'FX 4300', 'Processador Quad-core/4 threads', 359.90, 10, 0.0);
 INSERT INTO PRODUTO VALUES(DEFAULT, 9, 'FX 6300', 'Processador Hexa-core/12 threads', 399.90, 10, 0.0);
 INSERT INTO PRODUTO VALUES(DEFAULT, 9, 'FX 8300', 'Processador Octa-core/16 threads', 449.90, 10, 0.0);
+INSERT INTO PRODUTO VALUES(DEFAULT, 10, 'GIGABYTE GTX 1060 - 6GB', 'Placa de vídeo com 6GB VRAM', 1149.90, 10, 0.0);
+INSERT INTO PRODUTO VALUES(DEFAULT, 10, 'ASUS GTX 1060 - 6GB', 'Placa de vídeo com 6GB VRAM', 1069.90, 10, 0.0);
+INSERT INTO PRODUTO VALUES(DEFAULT, 11, 'GIGABYTE GTX 1070 - 8GB', 'Placa de vídeo com 8GB VRAM', 1849.90, 10, 0.0);
+INSERT INTO PRODUTO VALUES(DEFAULT, 11, 'EVGA GTX 1070 - 8GB', 'Placa de vídeo com 8GB VRAM', 1699.90, 10, 0.0);
+INSERT INTO PRODUTO VALUES(DEFAULT, 12, 'EVGA GTX 1080 - 8GB', 'Placa de vídeo com 8GB VRAM', 2349.90, 10, 0.0);
+INSERT INTO PRODUTO VALUES(DEFAULT, 13, 'GIGABYTE GTX 980 - 4GB', 'Placa de vídeo com 4GB VRAM', 2049.90, 10, 0.0);
+INSERT INTO PRODUTO VALUES(DEFAULT, 13, 'EVGA GTX 980 - 4GB', 'Placa de vídeo com 4GB VRAM', 1999.90, 10, 0.0);
+INSERT INTO PRODUTO VALUES(DEFAULT, 14, 'ASUS GTX 750 Ti - 2GB', 'Placa de vídeo com 2GB VRAM', 574.90, 10, 0.0);
+INSERT INTO PRODUTO VALUES(DEFAULT, 14, 'GIGABYTE GTX 750 Ti - 2GB', 'Placa de vídeo com 2GB VRAM', 499.90, 10, 0.0);
 
-
-SELECT * FROM PRODUTO
 
 CREATE TABLE COMPATIBILIDADE (
     COD_PRODUTO_PRIMARIO INT NOT NULL REFERENCES PRODUTO(COD_PRODUTO),
