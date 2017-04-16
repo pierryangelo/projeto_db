@@ -3,13 +3,13 @@
     NOME_PESSOA VARCHAR(60) NOT NULL,
     DT_NASC_PESSOA DATE,
     EMAIL_PESSOA VARCHAR(60) NOT NULL,
-    CPF VARCHAR(14) NOT NULL DEFAULT '000.000.000-00'
+    CPF VARCHAR(14) NOT NULL
 );
 
 INSERT INTO PESSOA VALUES(DEFAULT, 'Gildásio Filho', '1998-01-30', 'gildasiogx@gmail.com', '063.699.683-23');
-INSERT INTO PESSOA VALUES(DEFAULT, 'Gildásio Chagas', '1970-10-09', 'gildasiochagas@gmail.com', DEFAULT);
-INSERT INTO PESSOA VALUES(DEFAULT, 'Fulano da Silva', '1988-05-20','fulaninho@hotmail.com', DEFAULT);
-INSERT INTO PESSOA VALUES(DEFAULT, 'Maria Fulana', '1990-04-12','fulaninha@hotmail.com', DEFAULT);
+INSERT INTO PESSOA VALUES(DEFAULT, 'Gildásio Chagas', '1970-10-09', 'gildasiochagas@gmail.com', '333.333.333-23');
+INSERT INTO PESSOA VALUES(DEFAULT, 'Fulano da Silva', '1988-05-20','fulaninho@hotmail.com', '222.222.222-22');
+INSERT INTO PESSOA VALUES(DEFAULT, 'Maria Fulana', '1990-04-12','fulaninha@hotmail.com', '444.444.444-44');
 
 CREATE TABLE CLIENTE (
     COD_CLIENTE SERIAL PRIMARY KEY NOT NULL,
