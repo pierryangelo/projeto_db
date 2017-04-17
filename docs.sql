@@ -118,6 +118,16 @@ SELECT REALIZAR_PAGAMENTO(1, 'DÉBITO', 800.00);
 -- USO:
 SELECT STATUS_CARRINHO(1);
 
+-- GERENCIAR_CLIENTE(NOME VARCHAR(60), DT_NASC DATE, EMAIL VARCHAR(60), CPF_N VARCHAR(14)) RETURNS TEXT
+-- Função para criar e atualizar clientes, recebendo todos os parâmetros deste e criando os respectivos valores nas tabelas PESSOA e CLIENTE, ou atualizando-os
+-- USO:
+SELECT GERENCIAR_CLIENTE('Gildásio de Lima Filho', '1998-01-30', 'gildasiogx@gmail.com', '063.699.683-23');
+
+-- GERENCIAR_FUNCIONARIO(NOME VARCHAR(60), DT_NASC DATE, EMAIL VARCHAR(60), CPF_N VARCHAR(14), SALARIO_N DECIMAL(10,2)) RETURNS TEXT
+-- Função para criar e atualizar funcionários, recebendo todos os parâmetros deste e criando os respectivos valores nas tabelas PESSOA e CLIENTE, ou atualizando-os
+-- USO:
+SELECT GERENCIAR_FUNCIONARIO('Fulano da Silva', '1988-05-20','fulaninho@hotmail.com', '222.222.222-22', 950.00);
+
 -- Exemplo de uma operação completa:
 
 -- Quatro produtos são adicionados, três processadores AMD e uma placa-mãe p/ Intel
