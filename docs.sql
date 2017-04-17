@@ -128,7 +128,57 @@ SELECT GERENCIAR_CLIENTE('Gildásio de Lima Filho', '1998-01-30', 'gildasiogx@gm
 -- USO:
 SELECT GERENCIAR_FUNCIONARIO('Fulano da Silva', '1988-05-20','fulaninho@hotmail.com', '222.222.222-22', 950.00);
 
--- Exemplo de uma operação completa:
+-- REMOVER_FUNCIONARIO(CPF_FUNCIONARIO VARCHAR(14)) RETURNS TEXT
+-- Função para tornar invisível o funcionário para todas as pesquisas relacionadas a ele, facilitando guardar o registro das vendas realizadas por ele e também ver seu respectivo histórico
+-- USO:
+SELECT REMOVER_FUNCIONARIO('222.222.222-22');
+
+-- REMOVER_CLIENTE(CPF_CLIENTE VARCHAR(14)) RETURNS TEXT
+-- Função para tornar invisível o cliente para todas as pesquisas relacionadas a ele, facilitando guardar o registro das compras realizadas por ele e também ver seu respectivo histórico
+-- USO:
+SELECT REMOVER_CLIENTE('333.333.333-33');
+
+-- PROCURAR_CATEGORIA(NOME VARCHAR(60)) RETURNS INT
+-- Função para pesquisa do código da categoria com base no seu respectivo nome, caso esteja visível
+-- USO:
+SELECT PROCURAR_CATEGORIA('Ryzen 3');
+
+-- PROCURAR_MARCA(NOME VARCHAR(60)) RETURNS INT
+-- Função para pesquisa do código da marca com base no seu respectivo nome, caso esteja visível
+-- USO:
+SELECT PROCURAR_MARCA('AMD');
+
+-- REMOVER_CATEGORIA(NOME VARCHAR(60)) RETURNS TEXT
+-- Semelhante às outras remoções, apenas torna invisível para pesquisas à marca relacionada pelo nome
+-- USO:
+SELECT REMOVER_CATEGORIA('Ryzen 3');
+
+-- REMOVER_MARCA(NOME VARCHAR(60)) RETURNS TEXT
+-- Semelhante às outras remoções, apenas torna invisível para pesquisas à categoria relacionada pelo nome
+-- USO:
+SELECT REMOVER_MARCA('AMD')
+
+-- GERENCIAR_PRODUTO(NOME VARCHAR(60), NOVO_NOME VARCHAR(60), CATEG INT, DESCRICAO TEXT, QUANT_ESTQ INT) RETURNS TEXT
+-- Função para criar novos produtos e/ou atualizar os existentes com base nos dados fornecidos
+-- USO:
+SELECT GERENCIAR_PRODUTO('Ryzen 3 1100', 'Ryzen 3 1100X', PROCURAR_CATEGORIA('Ryzen 3'), 'Processador AMD', 10);
+
+-- GERENCIAR_MARCA(NOME VARCHAR(60), NOVO_NOME VARCHAR(60)) RETURNS TEXT
+-- Função para criar uma nova marca ou trocar o nome da existente com base nos dados fornecidos
+-- USO:
+SELECT GERENCIAR_MARCA('AMD', 'AMD2');
+SELECT GERENCIAR_MARCA('Nova marca', NULL);
+
+-- GERENCIAR_CATEGORIA(NOME VARCHAR(60), NOVO_NOME VARCHAR(60), MARC INT) RETURNS TEXT
+-- Função para criar uma nova categoria ou trocar o nome da existente com base nos dados fornecidos
+SELECT GERENCIAR_CATEGORIA('Ryzen 3', NULL, PROCURAR_MARCA('AMD'));
+SELECT GERENCIAR_CATEGORIA('Ryzen 3_2', NULL, PROCURAR_MARCA('AMD'));
+
+-- Exemplo de uma operações:
+
+SELECT * FROM CLIENTE NATURAL JOIN PESSOA
+SELECT REMOVER_CLIENTE('333.333.333-23');
+SELECT GERENCIAR_CLIENTE('Gildásio Chagas', '1970-10-09', 'gildasiochagas@gmail.com', '333.333.333-23');
 
 -- Quatro produtos são adicionados, três processadores AMD e uma placa-mãe p/ Intel
 SELECT ADICIONAR_ITEM('444.444.444-44', '063.699.683-23', 'Ryzen 3 1100', 3);
