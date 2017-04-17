@@ -70,7 +70,7 @@ BEGIN
         RAISE EXCEPTION 'O cupom deve ter no mínimo 10 utilizações!';
     END IF;
     IF NEW.USOS_DISPONIVEIS < 0 THEN
-        RAISE EXCEPTION 'Use apenas valores positivos paa a quantidade de usos disponíveis!';
+        RAISE EXCEPTION 'Use apenas valores positivos para a quantidade de usos disponíveis!';
     END IF;
     RETURN NEW;
 END;

@@ -1,4 +1,4 @@
--- Sobre funções na ordem que estão declaradas no arquivo functions.sql
+﻿-- Sobre funções na ordem que estão declaradas no arquivo functions.sql
 
 -- DESCONTO_APLICADO(NOME VARCHAR(60), PORCENTAGEM DECIMAL(3,2)) RETURNS TEXT
 -- Uma função de suporte feita para evitar acumulo de IF para retornar um TEXT simples, apenas formata a frase de retorno se o desconto foi aplicado ou retirado em um determinado produto, categoria ou marca, ela é chamada como retorno das duas funções abaixo
@@ -126,12 +126,12 @@ SELECT GERENCIAR_CLIENTE('Gildásio de Lima Filho', '1998-01-30', 'gildasiogx@gm
 -- GERENCIAR_FUNCIONARIO(NOME VARCHAR(60), DT_NASC DATE, EMAIL VARCHAR(60), CPF_N VARCHAR(14), SALARIO_N DECIMAL(10,2)) RETURNS TEXT
 -- Função para criar e atualizar funcionários, recebendo todos os parâmetros deste e criando os respectivos valores nas tabelas PESSOA e CLIENTE, ou atualizando-os
 -- USO:
-SELECT GERENCIAR_FUNCIONARIO('Fulano da Silva', '1988-05-20','fulaninho@hotmail.com', '222.222.222-22', 950.00);
+SELECT GERENCIAR_FUNCIONARIO('Fulano da Silva', '1988-05-20','fulaninho@hotmail.com', '222.222.222-24', 950.00);
 
 -- REMOVER_FUNCIONARIO(CPF_FUNCIONARIO VARCHAR(14)) RETURNS TEXT
 -- Função para tornar invisível o funcionário para todas as pesquisas relacionadas a ele, facilitando guardar o registro das vendas realizadas por ele e também ver seu respectivo histórico
 -- USO:
-SELECT REMOVER_FUNCIONARIO('222.222.222-22');
+SELECT REMOVER_FUNCIONARIO('222.222.222-24');
 
 -- REMOVER_CLIENTE(CPF_CLIENTE VARCHAR(14)) RETURNS TEXT
 -- Função para tornar invisível o cliente para todas as pesquisas relacionadas a ele, facilitando guardar o registro das compras realizadas por ele e também ver seu respectivo histórico
@@ -174,24 +174,28 @@ SELECT GERENCIAR_MARCA('Nova marca', NULL);
 SELECT GERENCIAR_CATEGORIA('Ryzen 3', NULL, PROCURAR_MARCA('AMD'));
 SELECT GERENCIAR_CATEGORIA('Ryzen 3_2', NULL, PROCURAR_MARCA('AMD'));
 
--- Exemplo de uma operações:
-
-SELECT * FROM CLIENTE NATURAL JOIN PESSOA
-SELECT REMOVER_CLIENTE('333.333.333-23');
-SELECT GERENCIAR_CLIENTE('Gildásio Chagas', '1970-10-09', 'gildasiochagas@gmail.com', '333.333.333-23');
+-- Exemplo de operações:
 
 -- Quatro produtos são adicionados, três processadores AMD e uma placa-mãe p/ Intel
-SELECT ADICIONAR_ITEM('444.444.444-44', '063.699.683-23', 'Ryzen 3 1100', 3);
+SELECT ADICIONAR_ITEM('444.444.444-44', '063.699.683-23', 'Ryzen 3 1100', 1);
+SELECT ADICIONAR_ITEM('444.444.444-44', '063.699.683-23', 'Intel Core i3-6100 Skylake', 1);
 SELECT ADICIONAR_ITEM('444.444.444-44', '063.699.683-23', 'GIGABYTE p/ Intel LGA 1151', 1);
 
 -- O segundo ADICIONAR_ITEM faz com que um aviso seja mostrado como mensagem de que a placa-mãe adicionada não é compatível com o processador que já está no carrinho, então ela é removida
 SELECT REMOVER_ITEM(1, 35, 1);
+SELECT REMOVER_ITEM(
+  OBTER_CARRINHO(
+  PROCURAR_FUNCIONARIO('444.444.444-44'), 
+  PROCURAR_CLIENTE('063.699.683-23')),
+  PROCURAR_ITEM('GIGABYTE p/ Intel'),
+  1);
 
 -- Um status do carrinho é mostrado
 SELECT STATUS_CARRINHO(OBTER_CARRINHO(PROCURAR_FUNCIONARIO('444.444.444-44'), PROCURAR_CLIENTE('063.699.683-23')));
 
 -- O pagamento é feito utilizando um cupom de 10% de desconto, então a função mostrará que há troco a ser recebido
-SELECT REALIZAR_PAGAMENTO(1, 'DÉBITO', 1200.00, '2017DESCONTO10');
-
+SELECT REALIZAR_PAGAMENTO(OBTER_CARRINHO(PROCURAR_FUNCIONARIO('444.444.444-44'), PROCURAR_CLIENTE('063.699.683-23')), 'DÉBITO', 249.80, null);
+SELECT REALIZAR_PAGAMENTO(OBTER_CARRINHO(PROCURAR_FUNCIONARIO('444.444.444-44'), PROCURAR_CLIENTE('063.699.683-23')), 'CRÉDITO', 1000.00, null);
+SELECT * FROM PRODUTO
 -- Por fim, vemos que o funcionário ganhou um bônus no salário de acordo com a venda concretizada
 SELECT OBTER_SALARIO_FUNCIONARIO('444.444.444-44');
